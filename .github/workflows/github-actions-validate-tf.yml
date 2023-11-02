@@ -11,7 +11,7 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
 jobs:
-  terraform:
+  build:
     name: Validate Terraform Code
     runs-on: ubuntu-latest
     defaults:
