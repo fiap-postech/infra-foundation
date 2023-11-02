@@ -14,16 +14,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 4.56.0"
     }
-  }
-}
 
-provider "aws" {
-  region              = "us-east-1"
-  allowed_account_ids = ["212517236385"]
-
-  default_tags {
-    tags = {
-      "worload" = "foundation"
+    tls = {
+      source = "hashicorp/tls"
+      version = "4.0.4"
     }
   }
 }

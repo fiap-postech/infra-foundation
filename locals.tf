@@ -5,6 +5,16 @@ locals {
     enable_dns_hostnames = true
   }
 
+  private_key = {
+    auth = {
+      name                 = "auth-private-key"
+      size                 = 2048
+      algorithm            = "RSA"
+      signer_secret_name   = "auth/Signer/Key"
+      verifier_secret_name = "auth/Verifier/Key"
+    }
+  }
+
   subnets = {
     public = {
       "Public Subnet A" : {
