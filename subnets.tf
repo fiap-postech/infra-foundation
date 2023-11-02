@@ -9,7 +9,7 @@ resource "aws_subnet" "public_subnet" {
     Name = each.key
   }
 
-  depends_on = [ aws_vpc.tc_vpc ]
+  depends_on = [aws_vpc.tc_vpc]
 }
 
 resource "aws_subnet" "private_subnet" {
@@ -23,6 +23,6 @@ resource "aws_subnet" "private_subnet" {
     Name = each.key
   }
 
-  depends_on = [ aws_vpc.tc_vpc ]
+  depends_on = [aws_vpc.tc_vpc]
 }
 
