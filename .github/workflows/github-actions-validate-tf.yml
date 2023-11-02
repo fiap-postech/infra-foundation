@@ -22,7 +22,7 @@ jobs:
         with:
          terraform_version: 1.5.7
 
-      - name: Run terraform init
+      - name: Run terraform init -reconfigure
         id: init
         run: terraform init
 
