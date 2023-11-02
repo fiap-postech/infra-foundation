@@ -20,12 +20,21 @@ Now we can initialize terraform
 2 - initialize terraform
 
 ```sh
-terraform init
+terraform init -backend-config "profile=tech-challenge"
 ```
+
+Now, we should create a tfvar file to keep var information and avoid long commands
+
+3 - create file terraform.tfvars
+```
+# terraform.tfvars
+aws_profile = "tech-challenge"
+```
+
 
 Now we can provision environment
 
-3 - provision environment
+4 - provision environment
 
 ```sh
 terraform plan #will analyze what will be made

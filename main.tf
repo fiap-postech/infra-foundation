@@ -2,10 +2,9 @@ terraform {
   required_version = ">= 1.0.0"
 
   backend "s3" {
-    bucket  = "tc-g13-tf-state"
-    key     = "tech-challenge-foundation.tfstate"
-    region  = "us-east-1"
-    profile = "tech-challenge"
+    bucket = "tc-g13-tf-state"
+    key    = "tech-challenge-foundation.tfstate"
+    region = "us-east-1"
   }
 
   required_providers {
@@ -17,7 +16,7 @@ terraform {
 }
 
 provider "aws" {
-  profile             = "tech-challenge"
+  profile             = var.aws_profile
   region              = "us-east-1"
   allowed_account_ids = ["212517236385"]
 
