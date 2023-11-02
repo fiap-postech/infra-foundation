@@ -16,7 +16,7 @@ resource "aws_secretsmanager_secret_version" "signer_version" {
   secret_id     = aws_secretsmanager_secret.auth_signer_secret.id
   secret_string = <<EOF
    {
-    "key": "${tls_private_key.auth_key.private_key_pem}",
+    "key": "${replace(tls_private_key.auth_key.private_key_pem, "\n", "")}",
     "algorithm": "${local.private_key.auth.algorithm}",
     "size": "${local.private_key.auth.size}"
    }
