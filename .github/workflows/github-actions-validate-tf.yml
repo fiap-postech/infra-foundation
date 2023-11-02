@@ -15,9 +15,9 @@ jobs:
     name: Validate Terraform Code
     runs-on: ubuntu-latest
     defaults:
-     run:
-       shell: bash
-       working-directory: ./terraform
+      run:
+        shell: bash
+        working-directory: ./terraform
 
     steps:
       - uses: actions/checkout@v3 
