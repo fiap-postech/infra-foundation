@@ -5,7 +5,7 @@ resource "aws_default_route_table" "private_route_table" {
     Name = "Private Route Table"
   }
   route {
-    cidr_block     = "0.0.0.0/0"
+    cidr_block = "0.0.0.0/0"
     # nat_gateway_id = aws_eip.nat.id
   }
 
