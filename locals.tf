@@ -10,7 +10,7 @@ locals {
   private_key = {
     auth = {
       name                 = "auth-private-key"
-      size                 = 2048
+      size                 = 4096
       algorithm            = "RS256"
       signer_secret_name   = "auth/Signer/Key"
       verifier_secret_name = "auth/Verifier/Key"
