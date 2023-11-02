@@ -11,17 +11,66 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
 jobs:
-  build:
+  terraform:
     name: Validate Terraform Code
     runs-on: ubuntu-latest
+    defaults:
+     run:
+       shell: bash
+       working-directory: ./terraform
 
     steps:
       - uses: actions/checkout@v3 
+
       - uses: hashicorp/setup-terraform@v2
+        with:
+         terraform_version: 1.5.7
 
       - name: Run terraform init
+        id: init
         run: terraform init
+
+      - name: Terraform format
+        id: fmt
+        run: terraform fmt -check
 
       - name: Run terraform validate
         id: validate
         run: terraform validate
+
+      - name: Terraform plan
+        id: plan
+        if: github.event_name == 'pull_request'
+        run: terraform plan -no-color -input=false
+        continue-on-error: true
+      
+      - uses: actions/github-script@v6
+        if: github.event_name == 'pull_request'
+        env:
+         PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+        with:
+         script: |
+           const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+           #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+           #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
+           #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+ 
+           <details><summary>Show Plan</summary>
+ 
+           \`\`\`\n
+           ${process.env.PLAN}
+           \`\`\`
+ 
+           </details>
+           *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+ 
+           github.rest.issues.createComment({
+             issue_number: context.issue.number,
+             owner: context.repo.owner,
+             repo: context.repo.repo,
+             body: output
+           })
+ 
+     - name: Terraform Plan Status
+       if: steps.plan.outcome == 'failure'
+       run: exit 1
