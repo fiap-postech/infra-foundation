@@ -5,11 +5,13 @@ locals {
     enable_dns_hostnames = true
   }
 
+  database_admin_secret_name = "database/Admin/Password"
+
   private_key = {
     auth = {
       name                 = "auth-private-key"
       size                 = 2048
-      algorithm            = "RSA"
+      algorithm            = "RS256"
       signer_secret_name   = "auth/Signer/Key"
       verifier_secret_name = "auth/Verifier/Key"
     }
