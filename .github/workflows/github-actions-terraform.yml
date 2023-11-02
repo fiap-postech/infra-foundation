@@ -1,5 +1,5 @@
 name: Validate Terraform Changes
-run-name: ${{ github.actor }} is validating his/her terraform code
+run-name: ${{ github.actor }} is changing his/her terraform code
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 
 jobs:
   terraform:
-    name: Validate Terraform Code
+    name: Provision Environment with Terraform Code
     runs-on: ubuntu-latest
     permissions:
       contents: read
