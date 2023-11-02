@@ -31,7 +31,7 @@ resource "aws_secretsmanager_secret_version" "verifier_version" {
   secret_id     = aws_secretsmanager_secret.auth_verifier_secret.id
   secret_string = <<EOF
    {
-    "key": "${tls_private_key.auth_key.public_key_openssh}",
+    "key": "${tls_private_key.auth_key.public_key_pem}",
     "algorithm": "${local.private_key.auth.algorithm}",
     "size": "${local.private_key.auth.size}"
    }
