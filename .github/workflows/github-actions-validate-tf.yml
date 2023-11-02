@@ -1,0 +1,23 @@
+name: Validate Terraform Changes
+run-name: ${{ github.actor }} is validating his/her terraform code
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Validate Terraform Code
+    run-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3 
+      - uses: hashicorp/setup-terraform@v2
+
+      - name: Run terraform init
+        run: terraform init
+
+      - name: Run terraform validate
+        id: validate
+        run: terraform validate
