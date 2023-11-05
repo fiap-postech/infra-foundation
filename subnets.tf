@@ -6,7 +6,8 @@ resource "aws_subnet" "public_subnet" {
   availability_zone = each.value.availability_zone
 
   tags = {
-    Name = each.key
+    Name  = each.key
+    Scope = "public"
   }
 
   depends_on = [aws_vpc.tc_vpc]
@@ -20,7 +21,8 @@ resource "aws_subnet" "private_subnet" {
   availability_zone = each.value.availability_zone
 
   tags = {
-    Name = each.key
+    Name  = each.key
+    Scope = "private"
   }
 
   depends_on = [aws_vpc.tc_vpc]
