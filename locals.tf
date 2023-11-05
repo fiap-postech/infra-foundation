@@ -5,6 +5,16 @@ locals {
     enable_dns_hostnames = true
   }
 
+  service_cluster = {
+    name = "tech-challenge"
+
+    provider = {
+      name   = "FARGATE_SPOT"
+      weight = 100
+      base   = 1
+    }
+  }
+
   database_admin_secret_name = "database/Admin/Password"
 
   private_key = {
