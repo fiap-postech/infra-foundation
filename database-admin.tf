@@ -1,5 +1,6 @@
 resource "aws_secretsmanager_secret" "database_admin_secret" {
-  name = local.database_admin_secret_name
+  name                    = local.database_admin_secret_name
+  recovery_window_in_days = 0
 }
 
 resource "aws_secretsmanager_secret_version" "database_admin_version" {

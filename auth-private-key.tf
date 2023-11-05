@@ -9,7 +9,8 @@ resource "aws_key_pair" "auth_key_pair" {
 }
 
 resource "aws_secretsmanager_secret" "auth_signer_secret" {
-  name = local.private_key.auth.signer_secret_name
+  name                    = local.private_key.auth.signer_secret_name
+  recovery_window_in_days = 0
 }
 
 resource "aws_secretsmanager_secret_version" "signer_version" {
@@ -24,7 +25,8 @@ EOF
 }
 
 resource "aws_secretsmanager_secret" "auth_verifier_secret" {
-  name = local.private_key.auth.verifier_secret_name
+  name                    = local.private_key.auth.verifier_secret_name
+  recovery_window_in_days = 0
 }
 
 resource "aws_secretsmanager_secret_version" "verifier_version" {
