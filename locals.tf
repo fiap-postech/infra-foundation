@@ -57,5 +57,18 @@ locals {
         availability_zone = "us-east-1c"
       }
     }
+
+    database = [
+      {
+        cidr_block        = "172.30.7.0/24"
+        availability_zone = "us-east-1c"
+      },
+      {
+        cidr_block        = "172.30.8.0/24"
+        availability_zone = "us-east-1b"
+      }
+    ]
+
+
   }
 }
