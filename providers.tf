@@ -3,7 +3,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      "worload" = "foundation"
+      "workload" = "foundation"
     }
   }
 }
